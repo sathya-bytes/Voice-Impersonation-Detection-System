@@ -92,7 +92,7 @@ def animated_waveform(y, sr):
 st.markdown("""
 <div class="glass">
     <div class="title">🎤 Voice Impersonation Detection System</div>
-    <div class="subtitle">AI Voice • Special Song • Human Voice Analysis</div>
+    <div class="subtitle">Every Voice Tells a Story !! </div>
 </div>
 """, unsafe_allow_html=True)
 
