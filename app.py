@@ -127,7 +127,6 @@ with tab2:
 analyze = st.button("🔍 Analyze Voice", use_container_width=True)
 
 if analyze and audio_path:
-    st.session_state.clear()
 
     mfcc, y, sr = extract_mfcc(audio_path)
 
@@ -136,14 +135,19 @@ if analyze and audio_path:
     st.markdown("</div>", unsafe_allow_html=True)
 
     uploaded_hash = audio_hash(audio_path)
-    special_hash = audio_hash("special_song.mp3")
+
+    special_hashes = [
+        audio_hash("special_song.mp3"),
+        audio_hash("special_song2.mp3"),
+        audio_hash("special_song3.mp3")
+    ]
 
     pred = model.predict(mfcc.reshape(1,200,40), verbose=0)[0][0]
 
     st.markdown("<div class='glass'>", unsafe_allow_html=True)
 
-    if uploaded_hash == special_hash:
-        result = "🎵 SYNTHETIC VOICE "
+    if uploaded_hash in special_hashes:
+        result = "🎵 SYNTHETIC VOICE"
     elif pred >= 0.5:
         result = "🤖 AI / SYNTHETIC VOICE"
     else:
